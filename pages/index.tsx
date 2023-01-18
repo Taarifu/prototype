@@ -1,20 +1,27 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+
+import AppNavBar from "@/src/components/layout/AppNavBar";
+import SideNav from "@/src/components/layout/SideNav";
+import PostList from "@/src/components/posts/PostList";
+import CreatePost from "@/src/components/posts/CreatePost/CreatePost";
 
 export default function BasicTextFields() {
   return (
-    <Box
-      component="form"
-      sx={{
-        "& > :not(style)": { m: 1, width: "25ch" },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-      <TextField id="filled-basic" label="Filled" variant="filled" />
-      <TextField id="standard-basic" label="Standard" variant="standard" />
+    <Box>
+      <AppNavBar />
+      <Grid container spacing={1}>
+        <Grid item lg={3}>
+          <SideNav />
+        </Grid>
+        <Grid item lg={6}>
+          <CreatePost />
+          <PostList />
+        </Grid>
+        <Grid item lg={3}></Grid>
+      </Grid>
     </Box>
   );
 }
