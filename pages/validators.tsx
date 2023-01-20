@@ -11,7 +11,7 @@ import ValidatorsBanner from "@/src/components/validators/ValidatorsBanner";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 
 import { TaarifuAddress } from "../config.js";
-import Taarifu from "../artifacts/contracts/Taarifu.sol/Taarifu.json";
+import Taarifu from "../lib/Taarifu.json";
 
 export default function ValidatorsPage() {
   const [validators, setValidators] = useState<any>([]);

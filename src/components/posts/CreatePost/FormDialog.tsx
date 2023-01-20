@@ -11,7 +11,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 
 import { TaarifuAddress } from "../../../../config.js";
-import Taarifu from "../../../../artifacts/contracts/Taarifu.sol/Taarifu.json";
+import Taarifu from "../../../../lib/Taarifu.json";
 
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";

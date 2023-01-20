@@ -16,7 +16,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { TaarifuAddress } from "../../../config.js";
-import Taarifu from "../../../artifacts/contracts/Taarifu.sol/Taarifu.json";
+import Taarifu from "../../../lib/Taarifu.json";
 
 export default function BecomeValidator() {
   const theme = useTheme();

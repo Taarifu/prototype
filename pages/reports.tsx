@@ -11,7 +11,7 @@ import ReportsBanner from "@/src/components/reports/ReportsBanner";
 import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 
 import { TaarifuAddress } from "../config.js";
-import Taarifu from "../artifacts/contracts/Taarifu.sol/Taarifu.json";
+import Taarifu from "../lib/Taarifu.json";
 
 export default function ReportsPage() {
   const [newsItems, setNewsItems] = useState<any>([]);

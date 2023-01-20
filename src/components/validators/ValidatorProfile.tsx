@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 
 import { TaarifuAddress } from "../../../config.js";
-import Taarifu from "../../../artifacts/contracts/Taarifu.sol/Taarifu.json";
+import Taarifu from "../../../lib/Taarifu.json";
 
 interface Props {
   data: {

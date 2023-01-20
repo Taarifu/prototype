@@ -12,7 +12,7 @@ import PostList from "@/src/components/posts/PostList";
 import HomeBanner from "@/src/components/layout/HomeBanner";
 
 import { TaarifuAddress } from "../config.js";
-import Taarifu from "../artifacts/contracts/Taarifu.sol/Taarifu.json";
+import Taarifu from "../lib/Taarifu.json";
 
 export default function EscalatingItems() {
   const [newsItems, setNewsItems] = useState<any>([]);
