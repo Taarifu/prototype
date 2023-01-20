@@ -1,18 +1,20 @@
+import axios from "axios";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+
 import SideNav from "@/src/components/layout/SideNav";
 import PostList from "@/src/components/posts/PostList";
-import CreatePost from "@/src/components/posts/CreatePost/CreatePost";
 import HomeBanner from "@/src/components/layout/HomeBanner";
 
 import { TaarifuAddress } from "../config.js";
 import Taarifu from "../artifacts/contracts/Taarifu.sol/Taarifu.json";
 
-export default function BasicTextFields() {
+export default function EscalatingItems() {
   const [newsItems, setNewsItems] = useState<any>([]);
   const [loadingState, setLoadingState] = useState("nor-loaded");
   const [loading, setLoading] = useState(false);
@@ -46,8 +48,8 @@ export default function BasicTextFields() {
         return item;
       })
     );
+    items.sort((a, b) => b.worthinessVotes - a.worthinessVotes);
     setNewsItems(items);
-    items.sort((a, b) => b.newsId - a.newsId);
     setLoading(false);
     setLoadingState("loaded");
   }
@@ -60,7 +62,12 @@ export default function BasicTextFields() {
           <SideNav />
         </Grid>
         <Grid item lg={6}>
-          <CreatePost />
+          <Box sx={{ m: 3 }}>
+            <Typography variant="h5" sx={{ fontWeight: 600 }}>
+              <TrendingUpIcon sx={{ mr: 1 }} fontSize="large" />
+              Escalating Stories
+            </Typography>
+          </Box>
           {loading ? <LinearProgress sx={{ ml: 2, mr: 2 }} /> : null}
           <PostList posts={newsItems} />
           {loadingState === "loaded" && !newsItems.length ? (

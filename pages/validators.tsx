@@ -1,21 +1,23 @@
-import { ethers } from "ethers";
 import { useEffect, useState } from "react";
+import { ethers } from "ethers";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import LinearProgress from "@mui/material/LinearProgress";
+
 import SideNav from "@/src/components/layout/SideNav";
-import PostList from "@/src/components/posts/PostList";
-import CreatePost from "@/src/components/posts/CreatePost/CreatePost";
-import HomeBanner from "@/src/components/layout/HomeBanner";
+import ValidatorList from "@/src/components/validators/ValidatorList";
+import ValidatorsBanner from "@/src/components/validators/ValidatorsBanner";
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 
 import { TaarifuAddress } from "../config.js";
 import Taarifu from "../artifacts/contracts/Taarifu.sol/Taarifu.json";
 
-export default function BasicTextFields() {
-  const [newsItems, setNewsItems] = useState<any>([]);
+export default function ValidatorsPage() {
+  const [validators, setValidators] = useState<any>([]);
   const [loadingState, setLoadingState] = useState("nor-loaded");
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     loadNewsItems();
   }, []);
@@ -27,27 +29,25 @@ export default function BasicTextFields() {
       "https://alfajores-forno.celo-testnet.org"
     );
     const contract = new ethers.Contract(TaarifuAddress, Taarifu.abi, provider);
-    const data = await contract.fetchAllNewsItems();
+    const data = await contract.fetchAllValidators();
 
     /*
-     *  map over items returned from smart contract and format
+     *  map over validators returned from smart contract and format
      *  them as well as fetch their metadata
      */
-    const items: any[] = await Promise.all(
+    const allvalidators: any[] = await Promise.all(
       data.map(async (i: any) => {
         let item = {
-          newsId: i.newsId.toNumber(),
-          poster: i.poster,
-          content: i.content,
-          worthinessVotes: i.worthinessVotes.toNumber(),
-          totalVotes: i.totalVotes.toNumber(),
-          verified: i.verified,
+          validatorId: i.validatorId.toNumber(),
+          memberAddress: i.memberAddress,
+          voteCount: i.voteCount.toNumber(),
+          alias: i._alias,
+          motivation: i.motivation,
         };
         return item;
       })
     );
-    setNewsItems(items);
-    items.sort((a, b) => b.newsId - a.newsId);
+    setValidators(allvalidators);
     setLoading(false);
     setLoadingState("loaded");
   }
@@ -56,16 +56,21 @@ export default function BasicTextFields() {
     <Box>
       <Grid container spacing={1}>
         <Grid item lg={3}>
-          <HomeBanner />
+          <ValidatorsBanner />
           <SideNav />
         </Grid>
         <Grid item lg={6}>
-          <CreatePost />
+          <Box sx={{ m: 3 }}>
+            <Typography variant="h5" sx={{ fontWeight: 600 }}>
+              <AssignmentIndIcon sx={{ mr: 1 }} fontSize="large" />
+              Validators
+            </Typography>
+          </Box>
           {loading ? <LinearProgress sx={{ ml: 2, mr: 2 }} /> : null}
-          <PostList posts={newsItems} />
-          {loadingState === "loaded" && !newsItems.length ? (
+          <ValidatorList validators={validators} />
+          {loadingState === "loaded" && !validators.length ? (
             <Box sx={{ m: 3 }}>
-              <Typography variant="h6">No posts yet</Typography>
+              <Typography variant="h6">No validators yet</Typography>
             </Box>
           ) : null}
         </Grid>
