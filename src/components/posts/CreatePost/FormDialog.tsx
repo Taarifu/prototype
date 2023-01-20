@@ -57,7 +57,7 @@ export default function FormDialog(props: IProps) {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>What's happening?</DialogTitle>
+        <DialogTitle>{`What's happening?`}</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus

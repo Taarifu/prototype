@@ -28,8 +28,7 @@ export default function CreatePost() {
           <CardContent>
             <Box>
               <Typography variant="subtitle1" sx={{ ml: 1 }}>
-                {" "}
-                | What's happening?
+                {`| What's happening?`}
               </Typography>
             </Box>
           </CardContent>
