@@ -3,13 +3,13 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
+import Link from "next/link";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
 import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import PersonIcon from "@mui/icons-material/Person";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 
@@ -26,35 +26,34 @@ export default function SideNav() {
         }}
       >
         <List>
-          <ListItem button>
+          <ListItem button component={Link} href="/">
             <ListItemIcon>
               <HomeIcon color="inherit" />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button>
+          <ListItem button component={Link} href="/escalating">
+            <ListItemIcon>
+              <TrendingUpIcon />
+            </ListItemIcon>
+            <ListItemText primary="Escalating Items" />
+          </ListItem>
+          <ListItem button component={Link} href="/reports">
             <ListItemIcon>
               <LibraryAddCheckIcon />
             </ListItemIcon>
             <ListItemText primary="Verified reports" />
           </ListItem>
-          <ListItem button>
+          <ListItem button component={Link} href="/validators">
             <ListItemIcon>
               <AssignmentIndIcon />
             </ListItemIcon>
             <ListItemText primary="Validators" />
           </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <PersonIcon />
-            </ListItemIcon>
-            <ListItemText primary="My profile" />
-          </ListItem>
         </List>
-
-        <Box sx={{ m: 10 }} />
-
-        <ActionButton />
+        <Box sx={{ p: 1 }}>
+          <ActionButton />
+        </Box>
       </Paper>
     </Box>
   );

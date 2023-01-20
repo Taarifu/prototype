@@ -7,6 +7,7 @@ import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";
 import Paper from "@mui/material/Paper";
 import Web3Modal from "web3modal";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
 import AppNavBar from "@/src/components/layout/AppNavBar";
 import SideNav from "@/src/components/layout/SideNav";
@@ -17,7 +18,7 @@ import HomeBanner from "@/src/components/layout/HomeBanner";
 import { TaarifuAddress } from "../config.js";
 import Taarifu from "../artifacts/contracts/Taarifu.sol/Taarifu.json";
 
-export default function BasicTextFields() {
+export default function EscalatingItems() {
   const [newsItems, setNewsItems] = useState([]);
   const [loadingState, setLoadingState] = useState("nor-loaded");
   const [loading, setLoading] = useState(false);
@@ -26,7 +27,6 @@ export default function BasicTextFields() {
   }, []);
 
   async function loadNewsItems() {
-    setLoading(true);
     /* create a generic provider and query new items */
     const provider = new ethers.providers.JsonRpcProvider();
     const contract = new ethers.Contract(TaarifuAddress, Taarifu.abi, provider);
@@ -49,8 +49,8 @@ export default function BasicTextFields() {
         return item;
       })
     );
+    items.sort((a, b) => b.worthinessVotes - a.worthinessVotes);
     setNewsItems(items);
-    setLoading(false);
     setLoadingState("loaded");
   }
 
@@ -62,7 +62,12 @@ export default function BasicTextFields() {
           <SideNav />
         </Grid>
         <Grid item lg={6}>
-          <CreatePost />
+          <Box sx={{ m: 3 }}>
+            <Typography variant="h5" sx={{ fontWeight: 600 }}>
+              <TrendingUpIcon sx={{ mr: 1 }} fontSize="large" />
+              Escalating Stories
+            </Typography>
+          </Box>
           {loading ? <LinearProgress sx={{ ml: 2, mr: 2 }} /> : null}
           <PostList posts={newsItems} />
           {loadingState === "loaded" && !newsItems.length ? (

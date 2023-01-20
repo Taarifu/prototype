@@ -1,12 +1,17 @@
 import React from "react";
 import Post from "./Post";
 
-export default function PostList() {
+interface Props {
+  posts: any[];
+}
+
+export default function PostList(props: Props) {
+  const { posts } = props;
   return (
     <div>
-      <Post />
-      <Post />
-      <Post />
+      {posts.map((post, i) => (
+        <Post key={i} data={post} />
+      ))}
     </div>
   );
 }

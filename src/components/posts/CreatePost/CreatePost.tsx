@@ -18,10 +18,6 @@ export default function CreatePost() {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <div>
       <Card
@@ -29,7 +25,7 @@ export default function CreatePost() {
           backgroundColor: "#263238",
           color: "#b0bec5",
           m: 2,
-          borderRadius: 6,
+          borderRadius: 8,
         }}
       >
         <CardActionArea sx={{ p: 1 }} onClick={handleClickOpen}>

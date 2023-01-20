@@ -11,13 +11,14 @@ import Web3Modal from "web3modal";
 import AppNavBar from "@/src/components/layout/AppNavBar";
 import SideNav from "@/src/components/layout/SideNav";
 import PostList from "@/src/components/posts/PostList";
-import CreatePost from "@/src/components/posts/CreatePost/CreatePost";
+import ReportsBanner from "@/src/components/reports/ReportsBanner";
 import HomeBanner from "@/src/components/layout/HomeBanner";
+import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 
 import { TaarifuAddress } from "../config.js";
 import Taarifu from "../artifacts/contracts/Taarifu.sol/Taarifu.json";
 
-export default function BasicTextFields() {
+export default function ReportsPage() {
   const [newsItems, setNewsItems] = useState([]);
   const [loadingState, setLoadingState] = useState("nor-loaded");
   const [loading, setLoading] = useState(false);
@@ -36,38 +37,48 @@ export default function BasicTextFields() {
      *  map over items returned from smart contract and format
      *  them as well as fetch their metadata
      */
-    const items: any[] = await Promise.all(
+    let items: any[] = [];
+    await Promise.all(
       data.map(async (i: any) => {
-        let item = {
-          newsId: i.newsId.toNumber(),
-          poster: i.poster,
-          content: i.content,
-          worthinessVotes: i.worthinessVotes.toNumber(),
-          totalVotes: i.totalVotes.toNumber(),
-          verified: i.verified,
-        };
-        return item;
+        if (i.verified) {
+          let item = {
+            newsId: i.newsId.toNumber(),
+            poster: i.poster,
+            content: i.content,
+            worthinessVotes: i.worthinessVotes.toNumber(),
+            totalVotes: i.totalVotes.toNumber(),
+            verified: i.verified,
+          };
+          items.push(item);
+        }
       })
     );
     setNewsItems(items);
     setLoading(false);
     setLoadingState("loaded");
+    console.log("News Items", items.length);
   }
 
   return (
     <Box>
       <Grid container spacing={1}>
         <Grid item lg={3}>
-          <HomeBanner />
+          <ReportsBanner />
           <SideNav />
         </Grid>
         <Grid item lg={6}>
-          <CreatePost />
+          <Box sx={{ m: 3 }}>
+            <Typography variant="h5" sx={{ fontWeight: 600 }}>
+              <LibraryAddCheckIcon sx={{ mr: 1 }} fontSize="large" />
+              Latest verified reports
+            </Typography>
+          </Box>
           {loading ? <LinearProgress sx={{ ml: 2, mr: 2 }} /> : null}
           <PostList posts={newsItems} />
+
           {loadingState === "loaded" && !newsItems.length ? (
             <Box sx={{ m: 3 }}>
-              <Typography variant="h6">No posts yet</Typography>
+              <Typography variant="h6">No Verified Stories yet</Typography>
             </Box>
           ) : null}
         </Grid>

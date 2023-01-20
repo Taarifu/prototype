@@ -1,7 +1,6 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
-import Fab from "@mui/material/Fab";
+import Box from "@mui/material/Box";
 import EditIcon from "@mui/icons-material/Edit";
 
 import FormDialog from "./FormDialog";
@@ -19,14 +18,17 @@ export default function ActionButton() {
 
   return (
     <div>
-      <Button
-        variant="contained"
-        startIcon={<EditIcon />}
-        onClick={handleClickOpen}
-        sx={{ m: 2, borderRadius: 3, textTransform: "none" }}
-      >
-        Report incedent
-      </Button>
+      <Box sx={{ m: 1 }}>
+        <Button
+          variant="contained"
+          fullWidth
+          startIcon={<EditIcon />}
+          onClick={handleClickOpen}
+          sx={{ borderRadius: 3, textTransform: "none" }}
+        >
+          Report incedent
+        </Button>
+      </Box>
       <FormDialog open={open} setOpen={setOpen} />
     </div>
   );

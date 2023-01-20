@@ -1,31 +1,22 @@
 require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config({ path: __dirname + "/.env" });
-
-const projectId = process.env.PROJECT_ID;
-const privateKey = process.env.PRIVATE_KEY;
 
 module.exports = {
   networks: {
-    localhost: {
-      url: "http://127.0.0.1:7545",
-    },
     hardhat: {
       chainId: 1337,
     },
     alfajores: {
-      url: "https://alfajores-forno.celo-testnet.org",
-      accounts: {
-        mnemonic: process.env.MNEMONIC,
-        path: "m/44'/52752'/0'/0",
-      },
+      url: "https://celo-alfajores.infura.io/v3/136854356e1f4ec594f7f4caeb52488b",
+      accounts: [
+        "bfdf8f1b00890293830c187af1e50799fd30aed642152331b01548cc9e69e8b3",
+      ],
       chainId: 44787,
     },
     celo: {
       url: "https://forno.celo.org",
-      accounts: {
-        mnemonic: process.env.MNEMONIC,
-        path: "m/44'/52752'/0'/0",
-      },
+      accounts: [
+        "bfdf8f1b00890293830c187af1e50799fd30aed642152331b01548cc9e69e8b3",
+      ],
       chainId: 42220,
     },
   },

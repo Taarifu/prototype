@@ -11,11 +11,7 @@ export default function AppNavBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Taarifu
-          </Typography>
-        </Toolbar>
+        <Toolbar></Toolbar>
       </AppBar>
     </Box>
   );
