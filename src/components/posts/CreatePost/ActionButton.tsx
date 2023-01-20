@@ -12,10 +12,6 @@ export default function ActionButton() {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <div>
       <Box sx={{ m: 1 }}>

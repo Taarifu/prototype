@@ -1,1 +1,1 @@
-export const TaarifuAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+export const TaarifuAddress = "0xA496E0071780CF57cd699cb1D5Ac0CdCD6cCD673";

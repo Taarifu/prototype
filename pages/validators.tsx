@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import LinearProgress from "@mui/material/LinearProgress";
 
-import AppNavBar from "@/src/components/layout/AppNavBar";
 import SideNav from "@/src/components/layout/SideNav";
 import ValidatorList from "@/src/components/validators/ValidatorList";
 import ValidatorsBanner from "@/src/components/validators/ValidatorsBanner";
@@ -15,7 +14,7 @@ import { TaarifuAddress } from "../config.js";
 import Taarifu from "../artifacts/contracts/Taarifu.sol/Taarifu.json";
 
 export default function ValidatorsPage() {
-  const [validators, setValidators] = useState([]);
+  const [validators, setValidators] = useState<any>([]);
   const [loadingState, setLoadingState] = useState("nor-loaded");
   const [loading, setLoading] = useState(false);
 
@@ -26,7 +25,9 @@ export default function ValidatorsPage() {
   async function loadNewsItems() {
     setLoading(true);
     /* create a generic provider and query new items */
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://alfajores-forno.celo-testnet.org"
+    );
     const contract = new ethers.Contract(TaarifuAddress, Taarifu.abi, provider);
     const data = await contract.fetchAllValidators();
 

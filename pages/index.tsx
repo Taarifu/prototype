@@ -1,14 +1,9 @@
-import axios from "axios";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";
-import Paper from "@mui/material/Paper";
-import Web3Modal from "web3modal";
-
-import AppNavBar from "@/src/components/layout/AppNavBar";
 import SideNav from "@/src/components/layout/SideNav";
 import PostList from "@/src/components/posts/PostList";
 import CreatePost from "@/src/components/posts/CreatePost/CreatePost";
@@ -18,7 +13,7 @@ import { TaarifuAddress } from "../config.js";
 import Taarifu from "../artifacts/contracts/Taarifu.sol/Taarifu.json";
 
 export default function BasicTextFields() {
-  const [newsItems, setNewsItems] = useState([]);
+  const [newsItems, setNewsItems] = useState<any>([]);
   const [loadingState, setLoadingState] = useState("nor-loaded");
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -28,7 +23,9 @@ export default function BasicTextFields() {
   async function loadNewsItems() {
     setLoading(true);
     /* create a generic provider and query new items */
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://alfajores-forno.celo-testnet.org"
+    );
     const contract = new ethers.Contract(TaarifuAddress, Taarifu.abi, provider);
     const data = await contract.fetchAllNewsItems();
 
@@ -50,6 +47,7 @@ export default function BasicTextFields() {
       })
     );
     setNewsItems(items);
+    items.sort((a, b) => b.newsId - a.newsId);
     setLoading(false);
     setLoadingState("loaded");
   }

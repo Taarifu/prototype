@@ -5,21 +5,17 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";
-import Paper from "@mui/material/Paper";
-import Web3Modal from "web3modal";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
-import AppNavBar from "@/src/components/layout/AppNavBar";
 import SideNav from "@/src/components/layout/SideNav";
 import PostList from "@/src/components/posts/PostList";
-import CreatePost from "@/src/components/posts/CreatePost/CreatePost";
 import HomeBanner from "@/src/components/layout/HomeBanner";
 
 import { TaarifuAddress } from "../config.js";
 import Taarifu from "../artifacts/contracts/Taarifu.sol/Taarifu.json";
 
 export default function EscalatingItems() {
-  const [newsItems, setNewsItems] = useState([]);
+  const [newsItems, setNewsItems] = useState<any>([]);
   const [loadingState, setLoadingState] = useState("nor-loaded");
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -27,8 +23,11 @@ export default function EscalatingItems() {
   }, []);
 
   async function loadNewsItems() {
+    setLoading(true);
     /* create a generic provider and query new items */
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://alfajores-forno.celo-testnet.org"
+    );
     const contract = new ethers.Contract(TaarifuAddress, Taarifu.abi, provider);
     const data = await contract.fetchAllNewsItems();
 
@@ -51,6 +50,7 @@ export default function EscalatingItems() {
     );
     items.sort((a, b) => b.worthinessVotes - a.worthinessVotes);
     setNewsItems(items);
+    setLoading(false);
     setLoadingState("loaded");
   }
 
