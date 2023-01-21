@@ -51,6 +51,7 @@ export default function ReportsPage() {
       })
     );
     setNewsItems(items);
+    items.sort((a, b) => b.newsId - a.newsId);
     setLoading(false);
     setLoadingState("loaded");
     console.log("News Items", items.length);
