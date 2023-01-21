@@ -44,7 +44,7 @@ export default function Post(props: Props) {
     let contract = new ethers.Contract(TaarifuAddress, Taarifu.abi, signer);
     let voteAction = await contract.voteWorthiness(newsId, voteType, 1);
     await voteAction.wait();
-    router.replace(router.asPath);
+    router.reload();
   }
 
   async function verifyNews() {
@@ -57,7 +57,7 @@ export default function Post(props: Props) {
     let contract = new ethers.Contract(TaarifuAddress, Taarifu.abi, signer);
     let voteAction = await contract.verifyNews(newsId);
     await voteAction.wait();
-    router.replace(router.asPath);
+    router.reload();
   }
 
   const upVote = () => {

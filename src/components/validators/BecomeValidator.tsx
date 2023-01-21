@@ -46,7 +46,7 @@ export default function BecomeValidator() {
     let postAction = await contract.becomeValidator(alias, motivation, 0);
     await postAction.wait();
     handleClose();
-    router.replace(router.asPath);
+    router.reload();
   }
 
   return (

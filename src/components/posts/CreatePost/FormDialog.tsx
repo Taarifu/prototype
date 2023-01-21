@@ -45,7 +45,7 @@ export default function FormDialog(props: IProps) {
     let postAction = await contract.postNews(content);
     await postAction.wait();
     handleClose();
-    router.replace(router.asPath);
+    router.reload();
   }
 
   return (

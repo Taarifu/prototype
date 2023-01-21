@@ -41,7 +41,7 @@ export default function ValidatorProfile(props: Props) {
     let contract = new ethers.Contract(TaarifuAddress, Taarifu.abi, signer);
     let voteAction = await contract.voteForValidator(validatorId, 0);
     await voteAction.wait();
-    router.replace(router.asPath);
+    router.reload();
   }
 
   return (
