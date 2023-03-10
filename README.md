@@ -1,6 +1,6 @@
 # Taarifu - A Decentralized Citizen Reporting Platform 
 
-###[Live Demo](https://taarifu.vercel.app/) 
+### [Live Demo](https://taarifu.vercel.app/) 
 
 #### Project Description
 ##### Background
