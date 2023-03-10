@@ -1,5 +1,7 @@
 # Taarifu - A Decentralized Citizen Reporting Platform 
 
+###[Live Demo](https://taarifu.vercel.app/) 
+
 #### Project Description
 ##### Background
 Citizen journalism refers to the act of members of the general public playing an active role in the process of collection, reporting, analyzing, and disseminating news and information. Citizen journalism plays a significant role in governance as it promotes accountability, transparency, and civic engagement. It supports democracy and amplifies the voices of marginalized communities. However, credibility and quality control pose a major challenge. Currently, validation and verification of information gained from citizen reporting is time-consuming and is faced with limited resources.
@@ -12,9 +14,6 @@ The platform will allow members to submit news and information for review by the
 Items with a high number of votes for each region are then escalated to regional validators selected by the community, who verify the credibility and relevance of the information and further escalate the matter.
 
 
-#### URLs
-##### Protottype
-https://taarifu.vercel.app/
 
 #### Presentation
 https://www.canva.com/design/DAFYPbP4Xlo/nStFvGUYWfISnyMW7MYQow/view?utm_content=DAFYPbP4Xlo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
