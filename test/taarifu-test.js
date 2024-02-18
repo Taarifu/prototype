@@ -1,9 +1,15 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Taarifu", function () {
-  it("Allows citizens to report and vote on items", async function () {
-    const Taarifu = await ethers.getContractFactory("Taarifu");
+describe("Taarifu", function() {
+
+  beforeEach(async function() {
+  
+  //const address_to_fix = await ethers.getSigner();
+  const deployer = await ethers.getSigners();
+  })
+  it("Allows citizens to report and vote on items", async function() {
+    const Taarifu = await ethers.getContractFactory("Taarifu", deployer);
     const taarifuContract = await Taarifu.deploy();
     await taarifuContract.deployed();
 
@@ -58,4 +64,5 @@ describe("Taarifu", function () {
     console.log("all members : ", members);
     console.log("all validator : ", validators);
   });
-});
+})
+
